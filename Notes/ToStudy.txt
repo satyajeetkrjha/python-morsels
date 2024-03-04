@@ -1,0 +1,7 @@
+1 .Read about extend operator
+2 .Read about subclass of list and tuple and why we need inInstanceOf
+3 .Read about yield and yield from operator properly
+4. zip in python to parallely loop over iterables
+5. Read about __dict__ , getattr, setattr in python 
+6. Read about UserDict and attempt bonus problem3 for easydict later
+
