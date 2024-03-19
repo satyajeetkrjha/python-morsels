@@ -1,7 +1,7 @@
 from timeit import repeat
 import unittest
 
-from uniques import uniques_only
+from uniques import uniques
 
 
 class UniquesOnlyTests(unittest.TestCase):
@@ -12,32 +12,32 @@ class UniquesOnlyTests(unittest.TestCase):
         self.assertEqual(list(iterable1), list(iterable2))
 
     def test_no_duplicates(self):
-        self.assertIterableEqual(uniques_only([1, 2, 3]), [1, 2, 3])
+        self.assertIterableEqual(uniques([1, 2, 3]), [1, 2, 3])
 
     def test_adjacent_duplicates(self):
-        self.assertIterableEqual(uniques_only([1, 1, 2, 2, 3]), [1, 2, 3])
+        self.assertIterableEqual(uniques([1, 1, 2, 2, 3]), [1, 2, 3])
 
     def test_non_adjacent_duplicates(self):
-        self.assertIterableEqual(uniques_only([1, 2, 3, 1, 2]), [1, 2, 3])
+        self.assertIterableEqual(uniques([1, 2, 3, 1, 2]), [1, 2, 3])
 
     def test_lots_of_duplicates(self):
-        self.assertIterableEqual(uniques_only([1, 2, 2, 1, 1, 2, 1]), [1, 2])
+        self.assertIterableEqual(uniques([1, 2, 2, 1, 1, 2, 1]), [1, 2])
 
     def test_order_maintained(self):
         self.assertIterableEqual(
-            uniques_only([4, 8, 3, 7, 2, 8, 4, 2, 1, 9, 3, 5]),
+            uniques([4, 8, 3, 7, 2, 8, 4, 2, 1, 9, 3, 5]),
             [4, 8, 3, 7, 2, 1, 9, 5],
         )
 
     def test_accepts_iterator(self):
         nums = (n**2 for n in [1, 2, 3])
-        self.assertIterableEqual(uniques_only(nums), [1, 4, 9])
+        self.assertIterableEqual(uniques(nums), [1, 4, 9])
 
     # To test bonus 1, comment out the next line
     @unittest.expectedFailure
     def test_returns_iterator(self):
         nums = iter([1, 2, 3])
-        output = uniques_only(nums)
+        output = uniques(nums)
         self.assertEqual(iter(output), iter(output))
         self.assertEqual(next(output), 1)
         # The below line tests that the incoming generator isn't exhausted.
@@ -52,7 +52,7 @@ class UniquesOnlyTests(unittest.TestCase):
     # To test bonus 2, comment out the next line
     @unittest.expectedFailure
     def test_accepts_nonhashable_types(self):
-        output = uniques_only([[1, 2], [3], [1], [3]])
+        output = uniques([[1, 2], [3], [1], [3]])
         self.assertIterableEqual(output, [[1, 2], [3], [1]])
 
     # To test bonus 3, comment out the next line
@@ -63,7 +63,7 @@ class UniquesOnlyTests(unittest.TestCase):
         variables = {
             "hashables": hashables,
             "unhashables": unhashables,
-            "uniques_only": uniques_only,
+            "uniques_only": uniques,
         }
         hashable_time = min(repeat(
             "list(uniques_only(hashables))",

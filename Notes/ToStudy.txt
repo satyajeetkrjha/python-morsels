@@ -4,4 +4,5 @@
 4. zip in python to parallely loop over iterables
 5. Read about __dict__ , getattr, setattr in python 
 6. Read about UserDict and attempt bonus problem3 for easydict later
-
+7. Hashable and unhashable in python https://stackoverflow.com/questions/14535730/what-does-hashable-mean-in-python
+8. Read about decorators more and how docs and function signatures etc can be preserved 
