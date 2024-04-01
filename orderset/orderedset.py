@@ -17,7 +17,7 @@ class OrderedSet(MutableSet):
     def __eq__(self, other) -> bool:
         if isinstance(other ,type(self)):
             return (len(self) == len(other) and all (x == y for x,y in zip(self,other)))
-        return super.__eq__(other)
+        return super().__eq__(other)
     
     def add(self,item):
         self.items[item] =None
