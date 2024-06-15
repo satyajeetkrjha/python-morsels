@@ -38,6 +38,7 @@ parser.add_argument('-f', '--filename')
 args = parser.parse_args()
 
 
+
 if args.filename:
     for line in Path(args.filename).read_text().splitlines():
         letter, word = line.split()
